@@ -6,7 +6,7 @@ class Policy():
   def __init__(self,level):
     self.level = level
     self.maze = level.maze
-    self.directions = np.zeros((level.height,level.width),dtype=np.int)
+    self.directions = np.zeros((level.height,level.width),dtype=int)
     
   def set_policy(self,directions):
     ''' set the policy (i.e. the action to take in each state) '''
@@ -41,7 +41,7 @@ class Policy():
   
   def calculate_greedy_directions(self,values):    
     # calculate the directions of all states except the exit  
-    directions = np.zeros((self.level.height,self.level.width),dtype=np.int)
+    directions = np.zeros((self.level.height,self.level.width),dtype=int)
     end = self.level.get_end()  
     for y in range(self.level.height):
       for x in range(self.level.width):

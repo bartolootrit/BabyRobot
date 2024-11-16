@@ -662,7 +662,7 @@ class GridLevel():
   def get_available_directions( self ):
     ''' return the table of available directions for the whole level '''
 
-    directions = np.zeros((self.height, self.width), dtype=np.int)
+    directions = np.zeros((self.height, self.width), dtype=int)
     for row in range(self.height):
       for col in range(self.width):
         # dont show directions on the exit
@@ -677,7 +677,7 @@ class GridLevel():
 
     # directions = self.get_available_directions()
 
-    directions = np.zeros((self.height, self.width), dtype=np.int)
+    directions = np.zeros((self.height, self.width), dtype=int)
     for row in range(self.height):
       for col in range(self.width):
         # dont show directions on the exit
