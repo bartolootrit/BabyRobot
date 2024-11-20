@@ -1,14 +1,9 @@
-# import .grid_level
 from direction import Direction
-import threading
-from time import sleep, time
+from time import sleep
 import random
 
-from ipycanvas import MultiCanvas
 from ipycanvas import Canvas, hold_canvas
 from ipywidgets import Image
-from ipywidgets import Layout
-from ipywidgets import Play, IntProgress, HBox, VBox, link
 
 import logging
 
@@ -80,10 +75,10 @@ class RobotPosition():
             for col in range(2):                                 
               x = col * (self.robot_size + 1)                    
               y = row * (self.robot_size + 1)
-            
               # copy the sprite from the sprite sheet
               image_data = self.sprite_canvas.get_image_data( x, y, self.robot_size)
-
+              if (image_data.sum() == 0):
+                  continue
               # put the sprite onto its own canvas
               canvas = Canvas(width=self.robot_size, height=self.robot_size)
               canvas.put_image_data( image_data, 0, 0 )  
@@ -118,7 +113,7 @@ class RobotPosition():
                 x = self.x + self.x_offset
                 y = self.y + self.y_offset
                 self.canvas.clear_rect(x, y, self.robot_size)                        
-                self.canvas.draw_image(self.canvas_sprites[index], x, y )                       
+                self.canvas.draw_image(self.canvas_sprites[index], x, y )
         
     def draw(self):    
         ' add the current sprite at the current position '     
@@ -159,8 +154,7 @@ class RobotPosition():
         self.draw()  
             
         self.move_count += 1        
-        
-        
+
     def move_East(self):        
         if self.x < (self.x_size - self.robot_size):
             self.x += self.step
